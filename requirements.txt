@@ -1,0 +1,25 @@
+# Digital Fly / MANC — dependency list (no project source is included in this folder).
+#
+# Python 3.12 (3.12–3.14 all work).
+#   python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
+#
+# Upstream simulator, referenced not vendored:
+#   FlyGym / NeuroMechFly v2 — NeLy lab, EPFL. Apache-2.0.
+#   https://github.com/NeLy-EPFL/flygym   docs: https://neuromechfly.org/
+#   Paper: Wang-Chen et al., Nature Methods, 2024.
+#   The whole biomechanical fly, its physics, cameras and walking controller come from
+#   this package. It is pinned to one commit so results stay reproducible.
+flygym @ git+https://github.com/NeLy-EPFL/flygym.git@38c8ec61034cd59bc5ba0de20688d4a3c0000d60
+
+# Everything else is standard scientific Python.
+numpy>=2.0,<3.0
+scipy>=1.15,<2.0
+pyyaml>=6.0,<7.0
+pandas>=2.2          # connectome tables
+pyarrow>=15          # connectome tables are Apache Arrow files
+pytest>=9,<10        # test suite
+
+# Connectome data (downloaded at setup time, not redistributed):
+#   MANC v1.0, the male adult nerve cord — Janelia FlyEM, CC-BY 4.0.
+#   https://www.janelia.org/project-team/flyem/manc-connectome
+#   ~93 MB of public neuron and connection tables, fetched from Janelia's public bucket.
